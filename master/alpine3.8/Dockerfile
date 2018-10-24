@@ -32,6 +32,7 @@ RUN set -ex \
 	&& pip install six \
 	&& pip install numpy \
 	&& pip install pandas \
+	&& pip install --no-cache-dir --ignore-installed python-snappy \
 	&& pip install git+https://github.com/TeskaLabs/asab.git \
 	&& pip install git+https://github.com/TeskaLabs/bspump.git
 

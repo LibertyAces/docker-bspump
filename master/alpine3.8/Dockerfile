@@ -25,6 +25,9 @@ RUN set -ex \
 	&& pip install Cython
 
 RUN set -ex \
+	&& apk add --no-cache snappy g++ snappy-dev
+
+RUN set -ex \
 	&& pip install aiohttp \
 	&& pip install aiomysql \
 	&& pip install aiokafka \

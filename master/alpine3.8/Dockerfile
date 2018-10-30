@@ -42,6 +42,9 @@ RUN set -ex \
 # Remove build environment
 RUN apk del buildenv
 
+RUN set -ex \
+	&& apk add lsof
+
 # Pyarrow
 COPY ./pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz
 RUN set -ex \

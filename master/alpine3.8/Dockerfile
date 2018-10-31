@@ -51,5 +51,7 @@ RUN set -ex \
 	&& tar xzvf /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz -C /usr/local/lib/python3.6/site-packages/ \
 	&& rm /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz
 
-CMD ["python3", "-m", "bspump"]
+EXPOSE 80/tcp
+
+CMD ["python3", "-m", "bspump", "-w"]
 

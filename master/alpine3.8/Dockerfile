@@ -1,4 +1,4 @@
-FROM python:3.6-alpine3.8
+FROM python:3.7-alpine3.8
 MAINTAINER TeskaLabs Ltd (support@teskalabs.com)
 
 # http://bugs.python.org/issue19846
@@ -46,10 +46,10 @@ RUN set -ex \
 	&& apk add lsof
 
 # Pyarrow
-COPY ./pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz
+COPY ./pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz
 RUN set -ex \
-	&& tar xzvf /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz -C /usr/local/lib/python3.6/site-packages/ \
-	&& rm /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz
+	&& tar xzvf /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz -C /usr/local/lib/python3.7/site-packages/ \
+	&& rm /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz
 
 EXPOSE 80/tcp
 

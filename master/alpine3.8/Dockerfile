@@ -37,7 +37,7 @@ RUN set -ex \
 	&& pip install pandas \
 	&& pip install --no-cache-dir --ignore-installed python-snappy \
 	&& pip install git+https://github.com/TeskaLabs/asab.git \
-	&& pip install git+https://github.com/TeskaLabs/bspump.git
+	&& pip install git+https://github.com/LibertyAces/BitSwanPump.git
 
 # Remove build environment
 RUN apk del buildenv

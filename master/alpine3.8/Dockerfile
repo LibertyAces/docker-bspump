@@ -33,6 +33,7 @@ RUN set -ex \
 	&& pip install aiokafka \
 	&& pip install pika \
 	&& pip install six \
+	&& pip install mongoquery \
 	&& pip install numpy \
 	&& pip install pandas \
 	&& pip install --no-cache-dir --ignore-installed python-snappy \

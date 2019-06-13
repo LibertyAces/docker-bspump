@@ -27,6 +27,12 @@ RUN set -ex \
 RUN set -ex \
 	&& apk add --no-cache snappy g++ snappy-dev
 
+# Pyarrow
+COPY ./pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz
+RUN set -ex \
+	&& tar xzvf /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz -C /usr/local/lib/python3.7/site-packages/ \
+	&& rm /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz
+
 RUN set -ex \
 	&& pip install aiohttp \
 	&& pip install aiomysql \
@@ -45,12 +51,6 @@ RUN apk del buildenv
 
 RUN set -ex \
 	&& apk add lsof
-
-# Pyarrow
-COPY ./pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz
-RUN set -ex \
-	&& tar xzvf /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz -C /usr/local/lib/python3.7/site-packages/ \
-	&& rm /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz
 
 EXPOSE 80/tcp
 

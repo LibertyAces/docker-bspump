@@ -35,9 +35,7 @@ RUN set -ex \
 	&& pip install six \
 	&& pip install numpy \
 	&& pip install pandas \
-	&& pip install --no-cache-dir --ignore-installed python-snappy \
-	&& pip install git+https://github.com/TeskaLabs/asab.git \
-	&& pip install git+https://github.com/TeskaLabs/bspump.git
+	&& pip install --no-cache-dir --ignore-installed python-snappy
 
 # Remove build environment
 RUN apk del buildenv
@@ -51,5 +49,4 @@ RUN set -ex \
 	&& tar xzvf /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz -C /usr/local/lib/python3.6/site-packages/ \
 	&& rm /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz
 
-CMD ["python3", "-m", "bspump"]
-
+CMD ["python3", "-m", "aiohttp"]

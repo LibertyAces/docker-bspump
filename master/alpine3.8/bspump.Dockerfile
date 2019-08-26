@@ -11,4 +11,4 @@ RUN set -ex \
 RUN set -ex \
 	&& pip install git+https://github.com/TeskaLabs/bspump.git
 
-CMD ["python3", "-m", "bspump"]
+CMD ["python3", "-m", "bspump", "-w"]

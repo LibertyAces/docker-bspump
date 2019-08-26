@@ -1,4 +1,4 @@
-FROM python:3.6-alpine3.8
+FROM python:3.7-alpine3.8
 MAINTAINER TeskaLabs Ltd (support@teskalabs.com)
 
 # http://bugs.python.org/issue19846
@@ -27,12 +27,19 @@ RUN set -ex \
 RUN set -ex \
 	&& apk add --no-cache snappy g++ snappy-dev
 
+# Pyarrow
+COPY ./pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz
+RUN set -ex \
+	&& tar xzvf /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz -C /usr/local/lib/python3.7/site-packages/ \
+	&& rm /root/pyarrow_0_11_0-37m-x86_64-alpine38.tar.gz
+
 RUN set -ex \
 	&& pip install aiohttp \
 	&& pip install aiomysql \
 	&& pip install aiokafka \
 	&& pip install pika \
 	&& pip install six \
+	&& pip install mongoquery \
 	&& pip install numpy \
 	&& pip install pandas \
 	&& pip install --no-cache-dir --ignore-installed python-snappy
@@ -43,10 +50,6 @@ RUN apk del buildenv
 RUN set -ex \
 	&& apk add lsof
 
-# Pyarrow
-COPY ./pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz
-RUN set -ex \
-	&& tar xzvf /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz -C /usr/local/lib/python3.6/site-packages/ \
-	&& rm /root/pyarrow_0_11_0-36m-x86_64-alpine38.tar.gz
+EXPOSE 80/tcp
 
 CMD ["python3", "-m", "aiohttp"]

@@ -9,6 +9,6 @@ RUN set -ex \
 	&& pip install git+https://github.com/TeskaLabs/asab.git
 
 RUN set -ex \
-	&& pip install git+https://github.com/TeskaLabs/bspump.git
+	&& pip install git+https://github.com/TeskaLabs/bspump.git --no-deps
 
 CMD ["python3", "-m", "bspump", "-w"]

@@ -21,7 +21,7 @@ Build an image of bspump dependencies version (`${VERSION}`) and base OS (`${BAS
 
 ```
 $ cd ${VERSION}/${BASEOS}
-$ docker build -t teskalabs/bspump:${VERSION}-${BASEOS} -f bspump-dependencies.Dockerfile .
+$ docker build -t teskalabs/bspump-dependencies:${VERSION}-${BASEOS} -f bspump-dependencies.Dockerfile .
 $ docker tag teskalabs/bspump-dependencies:${VERSION}-${BASEOS} teskalabs/bspump-dependencies:latest
 ```
 

@@ -52,4 +52,4 @@ RUN set -ex \
 
 EXPOSE 80/tcp
 
-CMD ["python3", "-m", "aiohttp"]
+CMD ["python3"]

@@ -43,6 +43,8 @@ RUN set -ex \
 	&& pip install mongoquery \
 	&& pip install numpy \
 	&& pip install pandas \
+	&& pip install aiozk \
+	&& pip install pyyml \
 	&& pip install --no-cache-dir --ignore-installed python-snappy
 
 # Remove build environment

@@ -42,8 +42,8 @@ RUN set -ex \
 	&& pip install mongoquery \
 	&& pip install numpy \
 	&& pip install pandas \
-	&& pip install pyaml==20.3.0 \
-	&& pip install --no-cache-dir --ignore-installed python-snappy
+	&& pip install pyyaml \
+	&& pip install python-snappy
 
 # Remove build environment
 RUN apk del buildenv

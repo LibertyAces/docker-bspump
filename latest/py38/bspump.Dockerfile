@@ -24,7 +24,11 @@ RUN apt-get -y remove \
 	python3.7-dev \
 	libsnappy-dev
 
-RUN apt-get -y autoremove
+# Cleanup
+RUN apt-get -y remove gcc \
+	&& apt-get -y clean autoclean \
+	&& apt-get -y autoremove \
+	&& rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80/tcp
 

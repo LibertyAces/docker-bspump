@@ -51,10 +51,9 @@ RUN pip3 install --no-cache-dir pywinrm
 RUN pip3 install --no-cache-dir python-snappy
 
 # Pyarrow
-# COPY ./pyarrow_0_11_0-37m-x86_64-alpine310.tar.gz /root/pyarrow_0_11_0-37m-x86_64-alpine310.tar.gz
-# RUN set -ex \
-#	&& tar xzvf /root/pyarrow_0_11_0-37m-x86_64-alpine310.tar.gz -C /usr/local/lib/python3.7/site-packages/ \
-#	&& rm /root/pyarrow_0_11_0-37m-x86_64-alpine310.tar.gz
+COPY ./pyarrow-0.17.1.latest572+gf25a014ab.d20200701-cp36-cp36m-linux_x86_64.whl /root/pyarrow-0.17.1.latest572+gf25a014ab.d20200701-cp36-cp36m-linux_x86_64.whl
+RUN pip3 install /root/pyarrow-0.17.1.latest572+gf25a014ab.d20200701-cp36-cp36m-linux_x86_64.whl
+RUN rm /root/pyarrow-0.17.1.latest572+gf25a014ab.d20200701-cp36-cp36m-linux_x86_64.whl
 
 # Remove build environment
 RUN apk del .build-deps

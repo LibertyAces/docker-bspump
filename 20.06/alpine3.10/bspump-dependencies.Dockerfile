@@ -37,7 +37,7 @@ RUN pip3 install --no-cache-dir aiosmtplib==1.1.3
 RUN pip3 install --no-cache-dir fastavro==0.23.5
 RUN pip3 install --no-cache-dir google-api-python-client==1.9.3
 RUN pip3 install --no-cache-dir numpy==1.19.0
-RUN pip3 install --no-cache-dir pandas==1.0.4
+RUN pip3 install --no-cache-dir pandas==1.0.5
 RUN pip3 install --no-cache-dir pika==1.1.0
 RUN pip3 install --no-cache-dir pymysql==0.9.2
 RUN pip3 install --no-cache-dir aiomysql==0.0.20
@@ -52,10 +52,9 @@ RUN pip3 install --no-cache-dir pywinrm==0.4.1
 RUN pip3 install --no-cache-dir python-snappy==0.5.4
 
 # Pyarrow
-# COPY ./pyarrow_0_11_0-37m-x86_64-alpine310.tar.gz /root/pyarrow_0_11_0-37m-x86_64-alpine310.tar.gz
-# RUN set -ex \
-#	&& tar xzvf /root/pyarrow_0_11_0-37m-x86_64-alpine310.tar.gz -C /usr/local/lib/python3.7/site-packages/ \
-#	&& rm /root/pyarrow_0_11_0-37m-x86_64-alpine310.tar.gz
+COPY ./pyarrow-0.17.1.latest553+gdd5b76816.d20200630-cp37-cp37m-linux_x86_64.whl /root/pyarrow-0.17.1.latest553+gdd5b76816.d20200630-cp37-cp37m-linux_x86_64.whl
+RUN pip3 install /root/pyarrow-0.17.1.latest553+gdd5b76816.d20200630-cp37-cp37m-linux_x86_64.whl
+RUN rm /root/pyarrow-0.17.1.latest553+gdd5b76816.d20200630-cp37-cp37m-linux_x86_64.whl
 
 # Remove build environment
 RUN apk del .build-deps

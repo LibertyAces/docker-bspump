@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.7-slim
 MAINTAINER TeskaLabs Ltd (support@teskalabs.com)
 
 RUN set -ex \
@@ -14,14 +14,13 @@ RUN apt-get -y install \
 	g++ \
 	libsnappy-dev
 
-RUN pip3 install git+https://github.com/LibertyAces/BitSwanPump.git
-RUN pip3 install -U git+https://github.com/TeskaLabs/asab.git
+RUN pip3 install -e git://github.com/LibertyAces/BitSwanPump.git@v20.07#egg=bspump
+RUN pip3 install -e  git://github.com/TeskaLabs/asab.git@v20.07#egg=asab
 
 RUN apt-get -y remove \
 	git \
 	gcc \
 	g++ \
-	python3.7-dev \
 	libsnappy-dev
 
 # Cleanup

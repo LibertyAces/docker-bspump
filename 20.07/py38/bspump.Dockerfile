@@ -14,7 +14,7 @@ RUN apt-get -y install \
 	g++ \
 	libsnappy-dev
 
-RUN pip3 install -e git://github.com/LibertyAces/BitSwanPump.git@v20.07#egg=bspump
+RUN pip3 install -e git://github.com/LibertyAces/BitSwanPump.git@v20.07.20#egg=bspump
 RUN pip3 install -e  git://github.com/TeskaLabs/asab.git@v20.07#egg=asab
 
 RUN apt-get -y remove \

@@ -51,11 +51,6 @@ RUN pip3 install --no-cache-dir mongoquery==1.3.6
 RUN pip3 install --no-cache-dir pywinrm==0.4.1
 RUN pip3 install --no-cache-dir python-snappy==0.5.4
 
-# Pyarrow
-COPY ./pyarrow-0.17.1.latest555+g9b162ee6c.d20200630-cp38-cp38-linux_x86_64.whl /root/pyarrow-0.17.1.latest555+g9b162ee6c.d20200630-cp38-cp38-linux_x86_64.whl
-RUN pip3 install /root/pyarrow-0.17.1.latest555+g9b162ee6c.d20200630-cp38-cp38-linux_x86_64.whl
-RUN rm /root/pyarrow-0.17.1.latest555+g9b162ee6c.d20200630-cp38-cp38-linux_x86_64.whl
-
 # Remove build environment
 RUN apk del .build-deps
 

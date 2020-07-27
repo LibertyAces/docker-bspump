@@ -2,7 +2,7 @@ name: Docker Nightly Push CI
 
 on:
   schedule:
-    - cron: '15 13 * * *'
+    - cron: '0 0 * * *'
 
 jobs:
 
@@ -19,12 +19,20 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       
-    - name: Build the Docker image
+    - name: Build master-py37
       run: docker build . --file ./master/py37/bspump.Dockerfile --tag teskalabs/bspump:master-py37
     
-    - name: tag image
+    - name: Tag master-py37
       run: docker tag teskalabs/bspump:master-py37 teskalabs/bspump:master-py37
       
-    - name: docker push
+    - name: Push master-py37
       run: docker push teskalabs/bspump:master-py37
+
+    - name: Build master-py38
+      run: docker build . --file ./master/py38/bspump.Dockerfile --tag teskalabs/bspump:master-py37
+    
+    - name: Tag master-py38
+      run: docker tag teskalabs/bspump:master-py38 teskalabs/bspump:master-py38
       
+    - name: Push master-py38
+      run: docker push teskalabs/bspump:master-py37

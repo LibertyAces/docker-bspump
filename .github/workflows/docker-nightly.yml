@@ -29,10 +29,10 @@ jobs:
       run: docker push teskalabs/bspump:master-py37
 
     - name: Build master-py38
-      run: docker build . --file ./master/py38/bspump.Dockerfile --tag teskalabs/bspump:master-py37
+      run: docker build . --file ./master/py38/bspump.Dockerfile --tag teskalabs/bspump:master-py38
     
     - name: Tag master-py38
       run: docker tag teskalabs/bspump:master-py38 teskalabs/bspump:master-py38
       
     - name: Push master-py38
-      run: docker push teskalabs/bspump:master-py37
+      run: docker push teskalabs/bspump:master-py38

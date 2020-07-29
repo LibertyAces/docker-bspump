@@ -2,7 +2,7 @@ name: Docker Nightly Push CI
 
 on:
   schedule:
-    - cron: 25 14 * * *'
+    - cron: '29 14 * * *'
 
 jobs:
 

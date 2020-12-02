@@ -18,7 +18,7 @@ RUN apt-get -y install \
 RUN pypy3 -m pip install pybind11
 RUN pypy3 -m pip install pandas
 
-RUN pypy3 -m pip install git+https://github.com/LibertyAces/BitSwanPump.git@simdjson
+RUN pypy3 -m pip install git+https://github.com/LibertyAces/BitSwanPump.git
 RUN pypy3 -m pip install -U git+https://github.com/TeskaLabs/asab.git
 
 RUN apt-get -y remove \

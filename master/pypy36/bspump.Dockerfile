@@ -1,5 +1,4 @@
-FROM pypy:3.6-slim
-MAINTAINER TeskaLabs Ltd (support@teskalabs.com)
+FROM pypy:3.6-slim AS builder
 
 RUN set -ex \
 	&& apt-get -y update \
@@ -21,17 +20,11 @@ RUN pypy3 -m pip install pandas
 RUN pypy3 -m pip install git+https://github.com/LibertyAces/BitSwanPump.git
 RUN pypy3 -m pip install -U git+https://github.com/TeskaLabs/asab.git
 
-RUN apt-get -y remove \
-	git \
-	gcc \
-	g++ \
-	libsnappy-dev
+FROM pypy:3.6-slim
 
-# Cleanup
-RUN apt-get -y remove gcc \
-	&& apt-get -y clean autoclean \
-	&& apt-get -y autoremove \
-	&& rm -rf /var/lib/apt/lists/*
+LABEL maintainer="TeskaLabs Ltd (support@teskalabs.com)"
+
+COPY --from=builder /usr/local/lib/python3.6/site-packages /usr/local/lib/python3.6/site-packages
 
 EXPOSE 80/tcp
 

@@ -20,11 +20,14 @@ RUN pypy3 -m pip install pandas
 RUN pypy3 -m pip install git+https://github.com/LibertyAces/BitSwanPump.git
 RUN pypy3 -m pip install -U git+https://github.com/TeskaLabs/asab.git
 
-FROM pypy:3.6-slim
-
 LABEL maintainer="TeskaLabs Ltd (support@teskalabs.com)"
 
-COPY --from=builder /usr/local/lib/python3.6/site-packages /usr/local/lib/python3.6/site-packages
+# Cleanup
+# TODO find out how to use staged build for pypy
+RUN apt-get -y remove gcc \
+	&& apt-get -y clean autoclean \
+	&& apt-get -y autoremove \
+	&& rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80/tcp
 

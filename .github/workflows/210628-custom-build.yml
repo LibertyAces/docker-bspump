@@ -1,0 +1,28 @@
+name: Docker Master manual CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: docker login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }} 
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      
+    - name: Build master-py37
+      run: docker build . --file ./210628-custom-build/py37/bspump.Dockerfile --tag teskalabs/bspump:210628-custom-build
+    
+    - name: Tag master-py37
+      run: docker tag teskalabs/bspump:210628-custom-build teskalabs/bspump:210628-custom-build
+      
+    - name: Push master-py37
+      run: docker push teskalabs/bspump:210628-custom-build

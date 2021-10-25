@@ -14,7 +14,7 @@ g++ \
 libsnappy-dev
 
 RUN pip3 install git+https://github.com/LibertyAces/BitSwanPump.git
-
+RUN pip3 uninstall -y asab
 RUN pip3 install -U git+https://github.com/TeskaLabs/asab.git
 
 FROM python:3.7-slim

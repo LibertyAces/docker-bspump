@@ -14,9 +14,8 @@ RUN apt-get -y install \
 	g++ \
 	libsnappy-dev
 
-RUN pip3 install -e git://github.com/LibertyAces/BitSwanPump.git@v21.11#egg=bspump
-RUN pip3 install -e git://github.com/TeskaLabs/asab.git@v21.11#egg=asab
-
+RUN python3 -m pip install bspump==21.11
+RUN python3 -m pip install asab==21.11
 
 RUN apt-get -y remove \
 	git \

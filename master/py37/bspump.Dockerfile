@@ -22,6 +22,7 @@ FROM python:3.7-slim
 LABEL maintainer="TeskaLabs Ltd (support@teskalabs.com)"
 
 COPY --from=builder /usr/local/lib/python3.7/site-packages /usr/local/lib/python3.7/site-packages
+COPY --from=builder /usr/bin/asab-manifest.py /usr/bin/asab-manifest.py
 
 EXPOSE 80/tcp
 

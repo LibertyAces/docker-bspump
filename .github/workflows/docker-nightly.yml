@@ -36,3 +36,14 @@ jobs:
       
     - name: Push master-py38
       run: docker push teskalabs/bspump:nightly-py38
+
+
+    - name: Build master-py311
+      run: docker build . --file ./master/py311/bspump.Dockerfile --tag teskalabs/bspump:nightly-py311
+    
+    - name: Tag master-py311
+      run: docker tag teskalabs/bspump:nightly-py311 teskalabs/bspump:nightly-py311
+      
+    - name: Push master-py311
+      run: docker push teskalabs/bspump:nightly-py311
+

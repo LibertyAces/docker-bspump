@@ -20,13 +20,13 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       
     - name: Build master-py37
-      run: docker build . --file ./master/py37/bspump.Dockerfile --tag teskalabs/bspump:nightly
+      run: docker build . --file ./master/py37/bspump.Dockerfile --tag teskalabs/bspump:nightly-py37
     
     - name: Tag master-py37
-      run: docker tag teskalabs/bspump:nightly teskalabs/bspump:nightly
+      run: docker tag teskalabs/bspump:nightly-py37 teskalabs/bspump:nightly-py37
       
     - name: Push master-py37
-      run: docker push teskalabs/bspump:nightly
+      run: docker push teskalabs/bspump:nightly-py37
 
     - name: Build master-py38
       run: docker build . --file ./master/py38/bspump.Dockerfile --tag teskalabs/bspump:nightly-py38

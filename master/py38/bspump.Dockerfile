@@ -1,4 +1,4 @@
-FROM python:3.8-slim AS builder
+FROM python:3.8-slim-buster AS builder
 
 RUN set -ex \
 && apt-get -y update \
@@ -17,7 +17,7 @@ RUN pip3 install git+https://github.com/LibertyAces/BitSwanPump.git
 RUN pip3 uninstall -y asab
 RUN pip3 install -U git+https://github.com/TeskaLabs/asab.git
 
-FROM python:3.8-slim
+FROM python:3.8-slim-buster
 
 LABEL maintainer="TeskaLabs Ltd (support@teskalabs.com)"
 

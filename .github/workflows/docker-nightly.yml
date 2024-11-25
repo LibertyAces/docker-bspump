@@ -7,45 +7,27 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-      
+    
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    
     - name: docker login
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }} 
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      
-    - name: Build master-py37
-      run: docker build . --file ./master/py37/bspump.Dockerfile --tag teskalabs/bspump:nightly
     
-    - name: Tag master-py37
-      run: docker tag teskalabs/bspump:nightly teskalabs/bspump:nightly
-      
-    - name: Push master-py37
-      run: docker push teskalabs/bspump:nightly
-
-    - name: Build master-py38
-      run: docker build . --file ./master/py38/bspump.Dockerfile --tag teskalabs/bspump:nightly-py38
-    
-    - name: Tag master-py38
-      run: docker tag teskalabs/bspump:nightly-py38 teskalabs/bspump:nightly-py38
-      
-    - name: Push master-py38
-      run: docker push teskalabs/bspump:nightly-py38
-
-
-    - name: Build master-py311
-      run: docker build . --file ./master/py311/bspump.Dockerfile --tag teskalabs/bspump:nightly-py311
-    
-    - name: Tag master-py311
-      run: docker tag teskalabs/bspump:nightly-py311 teskalabs/bspump:nightly-py311
-      
-    - name: Push master-py311
-      run: docker push teskalabs/bspump:nightly-py311
-
+    - name: Build and push multi-arch images
+      run: |
+        docker buildx create --use
+        docker buildx build --platform linux/amd64,linux/arm64 -t teskalabs/bspump:nightly --file ./master/py37/bspump.Dockerfile --push .
+        docker buildx build --platform linux/amd64,linux/arm64 -t teskalabs/bspump:nightly-py38 --file ./master/py38/bspump.Dockerfile --push .
+        docker buildx build --platform linux/amd64,linux/arm64 -t teskalabs/bspump:nightly-py311 --file ./master/py311/bspump.Dockerfile --push .
